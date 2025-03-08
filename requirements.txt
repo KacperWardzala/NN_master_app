@@ -1,4 +1,1 @@
 tensorflow
-numpy
-streamlit
-pickle5
