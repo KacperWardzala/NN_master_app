@@ -40,7 +40,6 @@ def preprocess_sequence(seq, tokenizer, max_length=500):
 st.title("Klasyfikacja bakterii na podstawie sekwencji RNA")
 st.write("Wprowadź sekwencję 16S rRNA, aby przewidzieć przynależność bakteryjną.")
 
-# 🟢 Nowa wersja: `st.text_input` + `st.button`
 user_sequence = st.text_input("Wprowadź sekwencję RNA:", "")
 
 if st.button("Przeanalizuj sekwencję"):
