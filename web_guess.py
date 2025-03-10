@@ -36,6 +36,10 @@ def preprocess_sequence(seq, tokenizer, max_length=500):
     padded_seq = pad_sequences(encoded_seq, maxlen=max_length, padding='post')
     return padded_seq
 
+# Logo
+
+st.sidebar.image("bacteria-6908969_1280.png", use_column_width=True)
+
 # Interfejs użytkownika w Streamlit
 st.set_page_config(page_title="RNA Bacteria Classification", layout="centered")
 
