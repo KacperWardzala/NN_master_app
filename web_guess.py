@@ -46,7 +46,7 @@ language = st.selectbox("Wybierz język / Select language", ["Polski", "English"
 texts = {
     "Polski": {
         "title": "Klasyfikacja bakterii na podstawie sekwencji RNA",
-        "description": "Wprowadź sekwencję 16S rRNA, aby przewidzieć przynależność bakteryjną.",
+        "description": "Aplikacja wykorzystuje model sieci neuronowych trenowany na sekwencjach 16S bakterii pochodzących z bazy GeneBank. \nWprowadź sekwencję 16S rRNA, aby przewidzieć przynależność bakteryjną.",
         "input_label": "Wprowadź sekwencję RNA:",
         "analyze_button": "Przeanalizuj sekwencję",
         "warning": "Wprowadź sekwencję",
@@ -56,7 +56,7 @@ texts = {
     },
     "English": {
         "title": "Bacteria Classification Based on RNA Sequence",
-        "description": "Enter a 16S rRNA sequence to predict bacterial affiliation.",
+        "description": "The application uses a neural network model trained on 16S bacterial sequences from the GeneBank database. \nEnter a 16S rRNA sequence to predict bacterial affiliation.",
         "input_label": "Enter RNA sequence:",
         "analyze_button": "Analyze sequence",
         "warning": "Please enter a sequence",
