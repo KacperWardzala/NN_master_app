@@ -40,7 +40,7 @@ def preprocess_sequence(seq, tokenizer, max_length=500):
 # Interfejs użytkownika w Streamlit
 st.set_page_config(page_title="RNA Bacteria Classification", layout="centered")
 
-st.image("bacteria-6908969_1280.png", use_column_width=True)
+st.image("bacteria-6908969_1280.png", width=300)
 
 # Wybór języka
 language = st.selectbox("Wybierz język / Select language", ["Polski", "English"])
