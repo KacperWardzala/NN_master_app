@@ -9,11 +9,17 @@ Streamlit application for classifying bacteria based on DNA sequences. It utiliz
 
 ## Project Structure
 ├── app.py                 # Main Streamlit application file
+
 ├── model_codons_lstm128.h5 # Neural network model (private)
+
 ├── tokenizer.pkl          # Tokenizer for DNA sequence processing
+
 ├── label_map.pkl          # Label map for bacterial classification
+
 ├── bacteria-6908969_1280.png # Image used in the application
+
 ├── requirements.txt       # List of required libraries
+
 ├── README.md              # Project documentation
 
 ## Code Description
