@@ -8,7 +8,7 @@ Streamlit application for classifying bacteria based on DNA sequences. It utiliz
 - Interactive user interface based on **Streamlit**
 
 ## Project Structure
-├── app.py                 # Main Streamlit application file
+├── web_guess.py                 # Main Streamlit application file
 
 ├── model_codons_lstm128.h5 # Neural network model
 
@@ -96,7 +96,7 @@ Aplikacja Streamlit do klasyfikacji bakterii na podstawie sekwencji DNA . Wykorz
 - Interaktywny interfejs użytkownika oparty na **Streamlit**
 
 ## truktura projektu
-├── app.py                 # Główny plik aplikacji Streamlit
+├── web_guess.py                 # Główny plik aplikacji Streamlit
 
 ├── model_codons_lstm128.h5 # Model sieci neuronowej 
 
