@@ -10,7 +10,7 @@ def load_model_cached():
 
 @st.cache_data
 def load_tokenizer():
-    with open('tokenizer.pkl', 'rb') as handle:
+    with open('tokenizer_balanced.pkl', 'rb') as handle:
         return pickle.load(handle)
 
 @st.cache_data
