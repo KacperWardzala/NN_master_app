@@ -1,3 +1,4 @@
 # Link to Streamlit application:
 
-https://nnmasterapp-tcw6ciqtq6ywm6mzcphng9.streamlit.app/
+
+[![GitHub](https://img.shields.io/badge/Repo-GitHub-blue)]([https://github.com/nazwa-uzytkownika/projekt](https://nnmasterapp-tcw6ciqtq6ywm6mzcphng9.streamlit.app/))
