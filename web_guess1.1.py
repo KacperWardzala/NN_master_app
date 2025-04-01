@@ -19,30 +19,24 @@ def load_label_map():
         label_map = pickle.load(handle)
     return {v: k for k, v in label_map.items()}  # Odwrócenie mapy etykiet
 
-# Wczytaj model i tokenizator
 model = load_model_cached()
 tokenizer = load_tokenizer()
 reverse_label_map = load_label_map()
 
-# Funkcja do dzielenia sekwencji na kodony (trójki nukleotydów)
 def split_into_codons(seq):
     codons = [seq[i:i+3] for i in range(0, len(seq) - len(seq) % 3, 3)]
     return " ".join(codons)
 
-# Funkcja do przetwarzania sekwencji RNA przed predykcją
 def preprocess_sequence(seq, tokenizer, max_length=500):
     codon_seq = split_into_codons(seq)
     encoded_seq = tokenizer.texts_to_sequences([codon_seq])
     padded_seq = pad_sequences(encoded_seq, maxlen=max_length, padding='post')
     return padded_seq
 
-# Interfejs użytkownika w Streamlit
 st.set_page_config(page_title="RNA Bacteria Classification", layout="centered")
 
-# Wybór języka
 language = st.selectbox("Wybierz język / Select language", ["Polski", "English"])
 
-# Teksty dla obu języków
 texts = {
     "Polski": {
         "title": "Klasyfikacja bakterii na podstawie sekwencji DNA",
@@ -84,5 +78,4 @@ if st.button(texts[language]["analyze_button"]):
         st.success(f"{texts[language]['result_label']} {predicted_bacteria}")
         st.write(f"{texts[language]['probability_label']} {predicted_probability:.4f}")
 
-# Link do repozytorium
 st.markdown(texts[language]["repo_link"])
