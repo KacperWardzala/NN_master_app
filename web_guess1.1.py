@@ -40,7 +40,7 @@ language = st.selectbox("Wybierz język / Select language", ["Polski", "English"
 texts = {
     "Polski": {
         "title": "Klasyfikacja bakterii na podstawie sekwencji DNA",
-        "description": "Wprowadź sekwencję kodującą 16S rRNA, aby przewidzieć przynależność bakteryjną.",
+        "description": "Wprowadź sekwencję kodującą 16S rRNA, aby przewidzieć gatunek bakterii.",
         "input_label": "Wprowadź sekwencję DNA:",
         "analyze_button": "Przeanalizuj sekwencję",
         "warning": "Wprowadź sekwencję",
@@ -50,7 +50,7 @@ texts = {
     },
     "English": {
         "title": "Bacteria Classification Based on DNA Sequence",
-        "description": "Enter a 16S rRNA coding sequence to predict bacterial affiliation.",
+        "description": "Enter a 16S rRNA coding sequence to predict bacterial species.",
         "input_label": "Enter DNA sequence:",
         "analyze_button": "Analyze sequence",
         "warning": "Please enter a sequence",
