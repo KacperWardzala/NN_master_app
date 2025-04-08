@@ -10,8 +10,6 @@ Streamlit application for classifying bacteria based on DNA sequences. It utiliz
 ## Project Structure
 ├── web_guess.py                 # Main Streamlit application file
 
-├── balanced_model.py             # Model structure
-
 ├── model_codons_lstm128.h5 # Neural network model
 
 ├── tokenizer.pkl          # Tokenizer for DNA sequence processing
@@ -99,8 +97,6 @@ Aplikacja Streamlit do klasyfikacji bakterii na podstawie sekwencji DNA . Wykorz
 
 ## truktura projektu
 ├── web_guess.py                 # Główny plik aplikacji Streamlit
-
-├── balanced_model.py             # Struktura modelu
 
 ├── model_codons_lstm128.h5 # Model sieci neuronowej 
 
