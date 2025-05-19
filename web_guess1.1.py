@@ -80,4 +80,4 @@ if st.button(texts[language]["analyze_button"]):
 
 st.markdown(texts[language]["repo_link"])
 
-st.image("bacteria-6908969_1280.png", caption="Bacteria illustration", use_column_width=True)
+st.image("bacteria-6908969_1280.png", caption="Bacteria illustration", use_container_width=True)
