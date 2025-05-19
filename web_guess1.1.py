@@ -79,3 +79,5 @@ if st.button(texts[language]["analyze_button"]):
         st.write(f"{texts[language]['probability_label']} {predicted_probability:.4f}")
 
 st.markdown(texts[language]["repo_link"])
+
+st.image("bacteria-6908969_1280.png", caption="Bacteria illustration", use_column_width=True)
