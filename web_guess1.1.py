@@ -2,9 +2,10 @@ import streamlit as st
 import pickle
 import numpy as np
 import re
+import io
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from Bio import SeqIO  # do obsługi plików FASTA
+from Bio import SeqIO
 
 @st.cache_resource
 def load_model_cached():
@@ -105,7 +106,7 @@ st.subheader(texts[language]["fasta_section"])
 fasta_file = st.file_uploader(texts[language]["fasta_label"], type=["fasta", "fa", "txt"])
 
 if fasta_file:
-    sequences = list(SeqIO.parse(fasta_file, "fasta"))
+    sequences = list(SeqIO.parse(io.TextIOWrapper(fasta_file, encoding="utf-8"), "fasta"))
     for record in sequences:
         seq_str = str(record.seq).upper()
         st.markdown(f"**ID:** `{record.id}`")
