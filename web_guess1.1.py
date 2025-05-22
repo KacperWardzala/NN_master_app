@@ -20,7 +20,7 @@ def load_tokenizer():
 def load_label_map():
     with open('label_map_balanced.pkl', 'rb') as handle:
         label_map = pickle.load(handle)
-    return {v: k for k, v in label_map.items()}  # Odwrócenie mapy etykiet
+    return {v: k for k, v in label_map.items()}
 
 model = load_model_cached()
 tokenizer = load_tokenizer()
@@ -38,6 +38,9 @@ def preprocess_sequence(seq, tokenizer, max_length=500):
 
 def validate_sequence(seq):
     return re.fullmatch(r'[ATGC]+', seq.upper()) is not None
+
+def clean_sequence(seq):
+    return ''.join(seq.upper().split())
 
 def process_and_predict(seq):
     processed_sequence = preprocess_sequence(seq, tokenizer)
@@ -90,17 +93,19 @@ user_sequence = st.text_input(texts[language]["input_label"], "")
 if st.button(texts[language]["analyze_button"]):
     if not user_sequence.strip():
         st.warning(texts[language]["warning"])
-    elif not validate_sequence(user_sequence.strip().upper()):
-        st.error(texts[language]["fasta_error"].format("Manual sequence"))
     else:
-        processed_sequence = preprocess_sequence(user_sequence.strip().upper(), tokenizer)
-        prediction = model.predict(processed_sequence)
-        predicted_label_index = np.argmax(prediction)
-        predicted_bacteria = reverse_label_map[predicted_label_index]
-        predicted_probability = prediction[0][predicted_label_index]
+        cleaned_sequence = clean_sequence(user_sequence)
+        if not validate_sequence(cleaned_sequence):
+            st.error(texts[language]["fasta_error"].format("Manual sequence"))
+        else:
+            processed_sequence = preprocess_sequence(cleaned_sequence, tokenizer)
+            prediction = model.predict(processed_sequence)
+            predicted_label_index = np.argmax(prediction)
+            predicted_bacteria = reverse_label_map[predicted_label_index]
+            predicted_probability = prediction[0][predicted_label_index]
 
-        st.success(f"{texts[language]['result_label']} {predicted_bacteria}")
-        st.write(f"{texts[language]['probability_label']} {predicted_probability:.4f}")
+            st.success(f"{texts[language]['result_label']} {predicted_bacteria}")
+            st.write(f"{texts[language]['probability_label']} {predicted_probability:.4f}")
 
 st.subheader(texts[language]["fasta_section"])
 fasta_file = st.file_uploader(texts[language]["fasta_label"], type=["fasta", "fa", "txt"])
@@ -108,11 +113,13 @@ fasta_file = st.file_uploader(texts[language]["fasta_label"], type=["fasta", "fa
 if fasta_file:
     sequences = list(SeqIO.parse(io.TextIOWrapper(fasta_file, encoding="utf-8"), "fasta"))
     for record in sequences:
-        seq_str = str(record.seq).upper()
+        raw_seq = str(record.seq)
+        cleaned_seq = clean_sequence(raw_seq)
+
         st.markdown(f"**ID:** `{record.id}`")
-        
-        if validate_sequence(seq_str):
-            bacteria, prob = process_and_predict(seq_str)
+
+        if validate_sequence(cleaned_seq):
+            bacteria, prob = process_and_predict(cleaned_seq)
             st.success(texts[language]["fasta_predicted"].format(bacteria, prob))
         else:
             st.error(texts[language]["fasta_error"].format(record.id))
