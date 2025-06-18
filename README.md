@@ -10,7 +10,7 @@ Streamlit application for classifying bacteria based on DNA sequences. It utiliz
 ## Project Structure
 ├── web_guess.py                 # Main Streamlit application file
 
-├── model_codons_lstm128.h5 # Neural network model
+├── model_tokens_lstm128.h5 # Neural network model
 
 ├── tokenizer.pkl          # Tokenizer for DNA sequence processing
 
@@ -29,7 +29,7 @@ The main application file is `web_guess.py`, which contains:
 ```python
 @st.cache_resource
 def load_model_cached():
-    return load_model('model_codons_lstm128.h5')
+    return load_model('model_tokens_lstm128.h5')
 
 @st.cache_data
 def load_tokenizer():
@@ -46,17 +46,17 @@ These functions handle loading the model, tokenizer, and label map, utilizing ca
 
 ### 2. DNA Sequence Processing
 ```python
-def split_into_codons(seq):
-    codons = [seq[i:i+3] for i in range(0, len(seq) - len(seq) % 3, 3)]
-    return " ".join(codons)
+def split_into_tokens(seq):
+    tokens = [seq[i:i+3] for i in range(0, len(seq) - len(seq) % 3, 3)]
+    return " ".join(tokens)
 
 def preprocess_sequence(seq, tokenizer, max_length=500):
-    codon_seq = split_into_codons(seq)
-    encoded_seq = tokenizer.texts_to_sequences([codon_seq])
+    token_seq = split_into_tokens(seq)
+    encoded_seq = tokenizer.texts_to_sequences([token_seq])
     padded_seq = pad_sequences(encoded_seq, maxlen=max_length, padding='post')
     return padded_seq
 ```
-Here, the DNA sequence is divided into codons (triplets of nucleotides), tokenized, and normalized for the neural network model.
+Here, the DNA sequence is divided into tokens (triplets of nucleotides), tokenized, and normalized for the neural network model.
 
 ### 3. User Interface in Streamlit
 ```python
@@ -98,7 +98,7 @@ Aplikacja Streamlit do klasyfikacji bakterii na podstawie sekwencji DNA . Wykorz
 ## truktura projektu
 ├── web_guess.py                 # Główny plik aplikacji Streamlit
 
-├── model_codons_lstm128.h5 # Model sieci neuronowej 
+├── model_tokens_lstm128.h5 # Model sieci neuronowej 
 
 ├── tokenizer.pkl          # Tokenizator dla przetwarzania sekwencji DNA
 
@@ -118,7 +118,7 @@ Główny plik aplikacji to web_guess.py, który zawiera:
 python
 @st.cache_resource
 def load_model_cached():
-    return load_model('model_codons_lstm128.h5')
+    return load_model('model_tokens_lstm128.h5')
 
 @st.cache_data
 def load_tokenizer():
@@ -135,13 +135,13 @@ Te funkcje odpowiadają za wczytanie modelu, tokenizatora i mapy etykiet, przy c
 
 ### 2. Przetwarzanie sekwencji DNA
 python
-def split_into_codons(seq):
-    codons = [seq[i:i+3] for i in range(0, len(seq) - len(seq) % 3, 3)]
-    return " ".join(codons)
+def split_into_tokens(seq):
+    tokens = [seq[i:i+3] for i in range(0, len(seq) - len(seq) % 3, 3)]
+    return " ".join(tokens)
 
 def preprocess_sequence(seq, tokenizer, max_length=500):
-    codon_seq = split_into_codons(seq)
-    encoded_seq = tokenizer.texts_to_sequences([codon_seq])
+    token_seq = split_into_tokens(seq)
+    encoded_seq = tokenizer.texts_to_sequences([token_seq])
     padded_seq = pad_sequences(encoded_seq, maxlen=max_length, padding='post')
     return padded_seq
 
