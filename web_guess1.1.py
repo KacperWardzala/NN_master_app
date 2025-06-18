@@ -9,7 +9,7 @@ from Bio import SeqIO
 
 @st.cache_resource
 def load_model_cached():
-    return load_model('model_codons_balanced_50epoch.h5')
+    return load_model('model_tokens_balanced_50epoch.h5')
 
 @st.cache_data
 def load_tokenizer():
@@ -26,13 +26,13 @@ model = load_model_cached()
 tokenizer = load_tokenizer()
 reverse_label_map = load_label_map()
 
-def split_into_codons(seq):
-    codons = [seq[i:i+3] for i in range(0, len(seq) - len(seq) % 3, 3)]
-    return " ".join(codons)
+def split_into_tokens(seq):
+    tokens = [seq[i:i+3] for i in range(0, len(seq) - len(seq) % 3, 3)]
+    return " ".join(tokens)
 
 def preprocess_sequence(seq, tokenizer, max_length=500):
-    codon_seq = split_into_codons(seq)
-    encoded_seq = tokenizer.texts_to_sequences([codon_seq])
+    token_seq = split_into_tokens(seq)
+    encoded_seq = tokenizer.texts_to_sequences([token_seq])
     padded_seq = pad_sequences(encoded_seq, maxlen=max_length, padding='post')
     return padded_seq
 
